@@ -14,9 +14,12 @@ class Flags extends Component {
     };
   }
   async componentDidMount() {
+    const name = this.props.match.params.name;
+
     const request = await fetch(
       "https://restcountries.eu/rest/v2/all?fields=name;capital;flag;region;population"
     );
+
     const data = await request.json();
     this.setState({
       countries: data
@@ -52,29 +55,27 @@ class Flags extends Component {
           />
         </Filters>
         <Cards>
-          {this.state.countries != null ? (
-            this.state.countries.map((e, key) => {
-              const region = e.region;
-              const toSpanish =
-                region == "Europe"
-                  ? "Europa"
-                  : region == "Americas"
-                  ? "America"
-                  : region;
-              if (toSpanish == this.state.filter && this.state.filter) {
-                return <Flag data={e} key={key} />;
-              } else if (this.handleSearch(e.name)) {
-                return <Flag data={e} key={key} />;
-              } else if (
-                (!this.state.filter || this.state.filter == "Filtrar") &&
-                !this.state.search
-              ) {
-                return <Flag data={e} key={key} />;
-              }
-            })
-          ) : (
-            <div>CARGANDO</div>
-          )}
+          {this.state.countries != null
+            ? this.state.countries.map((e, key) => {
+                const region = e.region;
+                const toSpanish =
+                  region == "Europe"
+                    ? "Europa"
+                    : region == "Americas"
+                    ? "America"
+                    : region;
+                if (toSpanish == this.state.filter && this.state.filter) {
+                  return <Flag data={e} key={key} />;
+                } else if (this.handleSearch(e.name)) {
+                  return <Flag data={e} key={key} />;
+                } else if (
+                  (!this.state.filter || this.state.filter == "Filtrar") &&
+                  !this.state.search
+                ) {
+                  return <Flag data={e} key={key} />;
+                }
+              })
+            : "CARGANDO"}
         </Cards>
       </Wrapper>
     );

@@ -1,18 +1,12 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Card = styled.div`
   color: ${props => props.theme.color};
   background-color: ${props => props.theme.elementColor};
-  width: 20%;
   margin: 1em;
   border-radius: 5px;
   box-shadow: ${props => props.theme.boxShadow};
-`;
-
-export const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
 `;
 
 export const Title = styled.h1`
@@ -25,7 +19,6 @@ export const Info = styled.p`
 font-size: 0.8em;
 text-align:center;
 
-
 }`;
 
 export const FlagImg = styled.svg`
@@ -35,3 +28,18 @@ width: 100%;
 border-top-left-radius: 5px ;
 border-top-right-radius: 5px ;
 }`;
+
+export const Sar = styled(NavLink)`
+  text-decoration: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: ${props => props.theme.color};
+  &:hover {
+    color: ${props => props.theme.color};
+  }
+  &.selected {
+    color: ${props => props.theme.color};
+  }
+`;
