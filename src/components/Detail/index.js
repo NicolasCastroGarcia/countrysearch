@@ -19,8 +19,6 @@ class Detail extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.name !== nextProps.match.params.name) {
-      console.log(this.props.match.params.name);
-      console.log("llega");
       this.getData(nextProps.match.params.name);
     }
   }
@@ -43,16 +41,16 @@ class Detail extends Component {
   }
 
   async findCountry(data) {
-    return await Promise.all(
-      data.map(async e => {
-        const request = await fetch(
-          `https://restcountries.eu/rest/v2/alpha/${e}?fields=name`
-        );
-        const response = await request.json();
-        const object = { code: e, name: response.name };
-        return object;
-      })
-    ).then(data => {
+    const promise = data.map(async e => {
+      const request = await fetch(
+        `https://restcountries.eu/rest/v2/alpha/${e}?fields=name`
+      );
+      const response = await request.json();
+      const object = { code: e, name: response.name };
+      return object;
+    });
+
+    return await Promise.all(promise).then(data => {
       return data;
     });
   }
@@ -60,6 +58,7 @@ class Detail extends Component {
   render() {
     const loading =
       this.state.borders == null ? "CARGANDO" : "Este país no tiene fronteras";
+
     return (
       <Wrapper>
         <Button />
