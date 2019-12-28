@@ -1,22 +1,20 @@
 import React, { Component } from "react";
 import { DropDown, Wrapper, SearchBar } from "./style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 class Selector extends Component {
   constructor(props) {
     super(props);
     this.state = {
       options: [
-        "Filtrar",
-        "America",
-        "Asia",
+        "Filter",
         "Africa",
-        "Europa",
+        "Americas",
+        "Asia",
+        "Europe",
         "Oceania",
         "Polar"
       ],
-      target: "Filtrar"
+      target: "Filter"
     };
   }
 

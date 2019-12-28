@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
-export const Countries = styled.button`
-color: ${props => props.theme.color};
-background-color: ${props => props.theme.elementColor};
-margin: 1em;
-padding: 0.8em;
-box-shadow: ${props => props.theme.boxShadow};
-width: 25%;
-border: none;
-font-weight: bold;
-cursor:pointer;
-}`;
+export const Countries = styled.button.attrs(props => ({
+  style: {
+    color: props.theme.color,
+    backgroundColor: props.theme.elementColor,
+    boxShadow: props.theme.boxShadow
+  }
+}))`
+  margin: 1em;
+  padding: 0.8em;
+  width: 25%;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+`;

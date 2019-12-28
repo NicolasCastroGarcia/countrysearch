@@ -6,15 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class Button extends Component {
   render() {
     return (
-      <BackButton>
-        <Back to={"/"}>
+      <Back to={"/"}>
+        <BackButton>
           <FontAwesomeIcon
             icon={faArrowLeft}
             style={{ paddingRight: "0.5em" }}
           />
-          Volver
-        </Back>
-      </BackButton>
+          Back
+        </BackButton>
+      </Back>
     );
   }
 }

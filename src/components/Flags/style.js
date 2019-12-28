@@ -15,6 +15,7 @@ flex-flow: row;
 align-items: center;
 width: 100%;
 justify-content: space-between;
+flex-wrap: wrap;
 }`;
 
 export const Cards = styled.div`

@@ -14,7 +14,7 @@ class Search extends Component {
           <FontAwesomeIcon icon={faSearch} style={{ paddingLeft: "1em" }} />
           <Input
             onChange={e => this.handleChange(e)}
-            placeholder="Busca un país..."
+            placeholder="Type a country..."
           ></Input>
         </SearchBar>
       </Wrapper>

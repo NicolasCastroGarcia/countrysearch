@@ -6,14 +6,13 @@ background: ${props => `url("${props.background}")`} no-repeat center;
 background-size: contain;
 width: 100%;
 height:auto;
-margin: 1em 5em 0em 5em;
-}`;
+margin: 1em 5em 0em 5em;}`;
 
 export const Card = styled.div`
 width: 100%;
 height:auto;
 color: ${props => props.theme.color};
-  margin: 1em 5em 0em 5em;
+margin: 1em 5em 0em 5em;
 display: flex;
 flex-direction: column;
 
@@ -39,8 +38,8 @@ height:auto;
 export const Info = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-between;
-
+justify-content: ${props =>
+  props.loading === "loading" ? "center" : "space-between"};
 }`;
 
 export const BackLink = styled(NavLink)`

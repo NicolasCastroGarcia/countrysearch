@@ -13,13 +13,13 @@ class Navbar extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Buscador de Paises</Title>
+        <Title>Country Search</Title>
         <ThemeChanger onClick={() => this.handleClick()}>
           <FontAwesomeIcon
-            icon={this.props.theme.type == "dark" ? faMoon : faSun}
+            icon={this.props.theme.type === "dark" ? faMoon : faSun}
             style={{ paddingRight: "0.5em" }}
           />
-          <Text>{this.props.theme.type == "dark" ? "Dark" : "Light"}</Text>
+          <Text>{this.props.theme.type === "dark" ? "Dark" : "Light"}</Text>
         </ThemeChanger>
       </Wrapper>
     );

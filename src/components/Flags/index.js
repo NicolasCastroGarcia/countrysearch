@@ -14,8 +14,7 @@ class Flags extends Component {
     };
   }
   async componentDidMount() {
-    const name = this.props.match.params.name;
-
+    document.title = "Country Search";
     const request = await fetch(
       "https://restcountries.eu/rest/v2/all?fields=name;capital;flag;region;population"
     );
@@ -27,8 +26,8 @@ class Flags extends Component {
   }
 
   handleCallBack(data, origin) {
-    let filter = origin == "selector" ? data : "";
-    let search = origin == "search" ? data : "";
+    let filter = origin === "selector" ? data : "";
+    let search = origin === "search" ? data : "";
     this.setState({
       filter,
       search
@@ -38,7 +37,7 @@ class Flags extends Component {
   handleSearch(name) {
     const result =
       this.state.search &&
-      name.toLowerCase().search(this.state.search.toLowerCase()) != -1;
+      name.toLowerCase().search(this.state.search.toLowerCase()) !== -1;
 
     return result;
   }
@@ -55,27 +54,22 @@ class Flags extends Component {
           />
         </Filters>
         <Cards>
-          {this.state.countries != null
+          {this.state.countries !== null
             ? this.state.countries.map((e, key) => {
                 const region = e.region;
-                const toSpanish =
-                  region == "Europe"
-                    ? "Europa"
-                    : region == "Americas"
-                    ? "America"
-                    : region;
-                if (toSpanish == this.state.filter && this.state.filter) {
+
+                if (region === this.state.filter && this.state.filter) {
                   return <Flag data={e} key={key} />;
                 } else if (this.handleSearch(e.name)) {
                   return <Flag data={e} key={key} />;
                 } else if (
-                  (!this.state.filter || this.state.filter == "Filtrar") &&
+                  (!this.state.filter || this.state.filter === "Filter") &&
                   !this.state.search
                 ) {
                   return <Flag data={e} key={key} />;
                 }
               })
-            : "CARGANDO"}
+            : "LOADING"}
         </Cards>
       </Wrapper>
     );

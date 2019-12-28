@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const BackButton = styled.button`
-color: ${props => props.theme.color};
-background-color: ${props => props.theme.elementColor};
+export const BackButton = styled.button.attrs(props => ({
+  style: {
+    color: props.theme.color,
+    backgroundColor: props.theme.elementColor,
+    boxShadow: props.theme.boxShadow
+  }
+}))`
 margin: 1em;
 padding: 1em;
-box-shadow: ${props => props.theme.boxShadow};
 width: 10%;
 border: none;
 font-weight: bold;

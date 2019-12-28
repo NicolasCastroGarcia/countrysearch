@@ -1,30 +1,27 @@
 import React, { Component } from "react";
 import Button from "../Button";
 import BorderCountries from "../BorderCountries";
-import {
-  FlagImg,
-  Wrapper,
-  Card,
-  Info,
-  Title,
-  BackLink,
-  BorderLink
-} from "./style";
-
+import { FlagImg, Wrapper, Card, Info, Title, BorderLink } from "./style";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 class Detail extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: null, borders: null };
+    this.state = { data: null, borders: null, current: null };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.name !== nextProps.match.params.name) {
-      this.getData(nextProps.match.params.name);
+  componentDidUpdate(nextProps) {
+    if (this.state.current !== this.props.match.params.name) {
+      this.setState({
+        current: this.props.match.params.name
+      });
+      this.getData(this.props.match.params.name);
+      document.title = this.props.match.params.name;
     }
   }
 
   async componentDidMount() {
     const name = this.props.match.params.name;
+    document.title = name;
     await this.getData(name);
   }
 
@@ -57,7 +54,7 @@ class Detail extends Component {
 
   render() {
     const loading =
-      this.state.borders == null ? "CARGANDO" : "Este país no tiene fronteras";
+      this.state.borders == null ? "LOADING" : "This country has no borders";
 
     return (
       <Wrapper>
@@ -65,7 +62,9 @@ class Detail extends Component {
 
         {this.state.data ? (
           <Info>
-            <FlagImg background={this.state.data.flag}></FlagImg>
+            <LazyLoadComponent>
+              <FlagImg background={this.state.data.flag}></FlagImg>
+            </LazyLoadComponent>
             <Card>
               <Title>{`${this.state.data.name}`}</Title>
               <p>
@@ -73,22 +72,22 @@ class Detail extends Component {
                 {`${this.state.data.nativeName}`}
               </p>
               <p>
-                <strong>Población:</strong> {`${this.state.data.population}`}
+                <strong>Population:</strong> {`${this.state.data.population}`}
               </p>
               <p>
-                <strong>Región:</strong> {`${this.state.data.region}`}
+                <strong>Region:</strong> {`${this.state.data.region}`}
               </p>
               <p>
-                <strong>Sub Región:</strong> {`${this.state.data.subregion}`}
+                <strong>Sub Region:</strong> {`${this.state.data.subregion}`}
               </p>
               <p>
                 <strong>Capital:</strong> {`${this.state.data.capital}`}
               </p>
               <div>
                 <p>
-                  <strong>Fronteras</strong> <br />{" "}
+                  <strong>Borders</strong> <br />{" "}
                 </p>
-                {this.state.borders.length != 0
+                {this.state.borders.length !== 0
                   ? this.state.borders.map(e => {
                       return (
                         <BorderLink to={`/country/${e.name}`}>
@@ -101,7 +100,7 @@ class Detail extends Component {
             </Card>
           </Info>
         ) : (
-          "CARGANDO"
+          <Info loading={"loading"}>LOADING</Info>
         )}
       </Wrapper>
     );

@@ -2,13 +2,12 @@ import React from "react";
 import Navbar from "./components/NavBar";
 import Flags from "./components/Flags";
 import GlobalStyle from "./Themes/globalStyle";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { light, dark } from "./Themes/themes";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   withRouter
 } from "react-router-dom";
 import Detail from "../src/components/Detail";
