@@ -9,12 +9,12 @@ export const BackButton = styled.button.attrs(props => ({
   }
 }))`
 margin: 1em;
-padding: 2em 1em 1em 1em;
+padding: 1em;
 width: 10%;
 border: none;
 font-weight: bold;
 cursor:pointer;
-border-radius: 5px;
+ border-radius: 5px;
 }`;
 
 export const Back = styled(NavLink)`
