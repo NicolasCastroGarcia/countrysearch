@@ -14,6 +14,7 @@ width: 10%;
 border: none;
 font-weight: bold;
 cursor:pointer;
+border-radius: 5px;
 }`;
 
 export const Back = styled(NavLink)`
