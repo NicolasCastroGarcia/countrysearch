@@ -9,7 +9,7 @@ export const BackButton = styled.button.attrs(props => ({
   }
 }))`
 margin: 1em;
-padding: 1em;
+padding: 2em 1em 1em 1em;
 width: 10%;
 border: none;
 font-weight: bold;
